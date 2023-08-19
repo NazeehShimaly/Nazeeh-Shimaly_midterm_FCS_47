@@ -1,3 +1,4 @@
+import datetime
 class employee:
     idIncrement=3
     def __init__(self, userName, Timestamp ,gender,salary):
@@ -8,10 +9,10 @@ class employee:
         else:
             self.id="emp"+str(employee.idIncrement)
         employee.idIncrement=employee.idIncrement+1
-        self.Timestamp=Timestamp
-        self.gender=gender
+        self.Timestamp=str(Timestamp)
+        self.gender=str(gender)
         self.salary=int(salary)
-        self.userName=userName
+        self.userName=str(userName)
     
     def menu(self):
         if self.gender=="male" :
@@ -20,18 +21,25 @@ class employee:
             print("Hi Ms."+self.userName)
         choice=0
       
-        while choice!=2:
+        while choice!="2":
             print("1. Check my Salary")
             print("2. Exit")
             
-            choice=input
+            choice=input("")
             if(choice=="1"):
-                self.checkSalary()
+              print(self.checkSalary())
             elif choice=="2":
                 self.exit()
             else:
                 print("wrong input please re enter one of the below operation")
-            
+    def checkSalary(self):
+        return "your salary is "+str(self.salary)+"$"
+    def exit(self):
+        timeStampFile=open("timeStamp.txt","a")
+        timeStamp=datetime.datetime.now()
+        timeStampFile.write(self.userName+"  online at " +str(timeStamp)+"\n")
+        timeStampFile.close()
+
 
             
         
