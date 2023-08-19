@@ -14,14 +14,6 @@ class admin:
           if choice=="1":
              self.displayStatistcs()
           elif choice=="2":
-            result=None
-            while result==None:
-              username=input("specifying the new username")
-              Pattern=("[a-zA-z]{3,20}")
-              result=re.fullmatch(Pattern,x)
-            date1=datetime.datetime.now()
-            date1=str(date1)[0:10]
-            date1=date1.replace("-","")
             self.addAnEmployee()
           elif choice=="3":
              self.displayAllEmployee()
@@ -36,10 +28,29 @@ class admin:
           else:
              print("INVALID INPUT")
 
-    def displayStatistics(self): 
-       return None
+    def displayStatistics(self):
+      result=None
+      while result==None:
+         username=input("specifying the new username only letters allowed")
+         Pattern=("[a-zA-z]{3,10}")
+         result=re.fullmatch(Pattern,username)
+      gender=input("Male or female").lower()
+      while gender=="m" or gender=="male" or gender=="f" or gender=="female":
+         print("invalid input")
+         gender=input("Male or female").lower()
+      salary=input("enter the employee salary")
+      pattern=("[0-9],{1-6}")
+      result=re.fullmatch(Pattern,salary)
+      while result==None:
+         print("invalid input")
+         salary=input("enter the employee salary")
+         result=re.fullmatch(Pattern,salary)
+      date1=datetime.datetime.now()
+      date1=str(date1)[0:10]
+      date1=date1.replace("-","") 
+      self.employeeLi
        
-    def addAnEmployee(self,userName, Timestamp ,gender,salary):
+    def addAnEmployee(self):
        return None
     def displayAllEmployee(self):
        
