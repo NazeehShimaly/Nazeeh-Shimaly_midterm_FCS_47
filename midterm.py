@@ -18,7 +18,7 @@ def fileIntoListOfEmp():
     return list1
 
 employeelist= fileIntoListOfEmp()  
-print(employeelist[1].gender)
+
 print("Welcome to comapny program"+"\n") 
 attemp=0
 while attemp<5:
@@ -27,6 +27,19 @@ while attemp<5:
     if passw=="admin123123" and userName=="admin":
         Admin=admin(employeelist)    
         Admin.menu()
+        attemp=0
+    elif passw=="":
+        attemp+=1
+        for employee in employeelist:
+            if employee.userName==userName:
+                entered=1
+                attemp=0
+                employee.menu()
+                break
+            
+    
+print("Your blocked")
+        
 
 
     

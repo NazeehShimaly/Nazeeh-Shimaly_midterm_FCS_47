@@ -23,8 +23,9 @@ class admin:
              self.removeEmployee()
           elif choice=="6":
              self.raiseEmployeeSalary()
-          elif choice=="6":
+          elif choice=="7":
              self.exit()
+             return
           else:
              print("INVALID INPUT")
 
@@ -45,7 +46,7 @@ class admin:
       result=None
       count=0
       while result==None and count<4:
-         username=input("specifying the new username only letters allowed")
+         username=input("specifying the new username only letters allowed : ")
          Pattern=("[a-zA-z]{3,10}")
          result=re.fullmatch(Pattern,username)
          count=1+count
@@ -55,12 +56,13 @@ class admin:
          #entering user name
 
 
-      gender=gender=input("Male or female").lower()
+      gender=gender=input("Male or female :").lower()
       count=0
       while gender!="m" and gender!="male" and gender!="f" and gender!="female" and count<3 :
          count=count+1
-         print("INVALID INPUT"+"\n"+"enter m or male if the employee is male"+"\n"+"enter f of female if she is female")
-         gender=input("Male or female").lower()
+         print("INVALID INPUT"+"\n"+"enter m or male if the employee is male"+"\n"+
+               "enter f of female if she is female")
+         gender=input("").lower()
          if count==3:
             print("you are entering an unallowed character the process is cancelled")
             return None
@@ -73,7 +75,7 @@ class admin:
           
           
       count=0
-      salary=input("enter the employee salary")
+      salary=input("enter the employee salary : ")
       pattern=("[0-9]{1,6}")
       result=re.fullmatch(pattern,salary)
       while result==None and count<3:
@@ -111,7 +113,7 @@ class admin:
       
       id=input("enter the employee id : ")
       index=self.findEmployee(id)
-      if index<=0:
+      if index==-1:
          print("no employee with this id")
       else:
          self.employeeList[index].changeSalary()
@@ -123,7 +125,7 @@ class admin:
       
       id=input("enter the employee id : ")
       index=self.findEmployee(id)
-      if index<=0:
+      if index==-1:
          print("no employee with this id")
       else:
          self.employeeList.pop(index)
@@ -133,23 +135,40 @@ class admin:
        
        
     def raiseEmployeeSalary(self):
+       id=input("enter employee id : ")
+       index=self.findEmployee(id)
+       if index >= 0:
+         raisepercentage=input("enter the percentage to be raised % : ")
+         try:
+            self.employeeList[index].raisePrecentage(float(raisepercentage))
+            print("the salary was raised by "+raisepercentage+" the new salary is "+
+                  str(self.employeeList[index].salary))
+         except ValueError:
+            print("Invalid percentage")
+         
        
        return None
-    def exit():
-       return None
+    def exit(self):
+       file=open("employeesData.txt","w")
+       for employee in self.employeeList:
+          file.write(employee.id+","+employee.userName+","+str(employee.Timestamp)
+                     +","+employee.gender+","+str(employee.salary)+"\n")
+       file.close()
     def findEmployee(self,id):
       pattern=("emp"+"[0-9]{3,1000}")
       
-      result=re.fullmatch(pattern,id)
+      
+      result=re.fullmatch(pattern,id.replace(" ",""))
       if result==None:
-         
          return -1
+            
       else:
          start=0
          end=len(self.employeeList)-1
          mid=(start+end)//2
          while mid>=start and mid<=end and start<=end:
             if self.employeeList[mid].id==id:
+               
                return mid
             elif int((self.employeeList[mid].id)[3:])>int(id[3:]):
                end=mid-1
@@ -157,6 +176,7 @@ class admin:
             elif int((self.employeeList[mid].id)[3:])<int(id[3:]):
                start=mid+1
                mid=(start+end)//2
+         
          return -1
  
     

@@ -31,6 +31,7 @@ class employee:
               print(self.checkSalary())
             elif choice=="2":
                 self.exit()
+                return
             else:
                 print("wrong input please re enter one of the below operation")
 
@@ -47,13 +48,15 @@ class employee:
 
 
     def changeSalary(self):
-        salary=input("enter the new salary")
+        salary=input("enter the new salary : ")
         pattern=("[0-9]{1,10}")
         result=re.fullmatch(pattern,salary)
         if result:
             self.salary=int(salary)
         else:
-            print("INvalid input")
+            print("Invalid input")
+    def raisePrecentage(self,perc):
+        self.salary=int(self.salary+self.salary*perc/100)
 
             
         
