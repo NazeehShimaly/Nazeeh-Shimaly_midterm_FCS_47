@@ -1,7 +1,7 @@
 import datetime
 class employee:
     idIncrement=3
-    def __init__(self, userName, Timestamp ,gender,salary):
+    def __init__(self, userName:str, Timestamp:str ,gender:str,salary:int):
         if employee.idIncrement<10:
             self.id="emp00"+str(employee.idIncrement)
         elif employee.idIncrement>=10 and employee.idIncrement<100 :
