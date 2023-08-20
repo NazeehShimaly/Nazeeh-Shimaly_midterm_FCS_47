@@ -26,6 +26,8 @@ def empfound(emp,list1:list[employee],passw):
                 return employee1
     return -1
 
+#Main 
+
 employeelist= fileIntoListOfEmp()  
 
 print("Welcome to comapny program"+"\n") 
@@ -48,10 +50,6 @@ while attemp<5:
             attemp=0
         
 
-    
-    
-
-    
 print("Your blocked")
         
 

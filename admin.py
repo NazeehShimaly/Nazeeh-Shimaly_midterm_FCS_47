@@ -2,9 +2,13 @@ from employee import employee
 import datetime
 import re
 class admin:
+   #constructor
     def __init__(self,list1:list[employee]):
       self.merge(list1)
       self.employeeList=list1
+
+
+      #the menu function
     def menu(self):
        choice=0
        while choice!="7":
@@ -14,22 +18,31 @@ class admin:
           choice=input("")
           if choice=="1":
             self.displayStatistics()
+
           elif choice=="2":
             self.addAnEmployee()
+
           elif choice=="3":
              self.displayAllEmployee()
+
           elif choice=="4":
              self.changeEmployeeSalary()
+
           elif choice=="5":
              self.removeEmployee()
+
           elif choice=="6":
              self.raiseEmployeeSalary()
+
           elif choice=="7":
              self.exit()
              return
+          
           else:
              print("INVALID INPUT")
 
+      
+#StaTistics start
     def displayStatistics(self):
        numOfFemales=0
        total=len(self.employeeList)
@@ -43,20 +56,23 @@ class admin:
              +str(numOfFemales)+" is females and "+str(total-numOfFemales)+" is males")
       
        
+
+
     def addAnEmployee(self):
       result=None
       count=0
-      while result==None and count<4:
+      while result==None and count<4:#to make sure that the userName contains only characters
          username=input("specifying the new username only letters allowed : ")
          Pattern=("[a-zA-z]{3,10}")
          result=re.fullmatch(Pattern,username)
          count=1+count
-         if count==4:
+
+         if count==4:#to stop excuting when we get non sense input
             print("you are entering an unallowed character the process is cancelled")
             return None
          #entering user name
 
-
+#     gender should only have male or female in its value
       gender=gender=input("Male or female :").lower()
       count=0
       while gender!="m" and gender!="male" and gender!="f" and gender!="female" and count<3 :
@@ -71,7 +87,7 @@ class admin:
          gender="male"
       elif gender=="f":
          gender="female"
-      #specifing the gender
+     
          
           
           
@@ -130,7 +146,7 @@ class admin:
          print("no employee with this id")
       else:
          self.employeeList.pop(index)
-         print("employee deleted")
+         print("employee deleted"+"\n")
 
       
        
@@ -155,6 +171,9 @@ class admin:
           file.write(employee.id+","+employee.userName+","+str(employee.Timestamp)
                      +","+employee.gender+","+str(employee.salary)+"\n")
        file.close()
+
+
+     #binary searching to the employee using employee id  
     def findEmployee(self,id):
       pattern=("emp"+"[0-9]{3,1000}")
       
@@ -179,6 +198,8 @@ class admin:
                mid=(start+end)//2
          
          return -1
+      
+      #merge sorting the employee list by there id
     def merge(self,list1:list[employee]):
        if len(list1)>1: 
          mid=(len(list1))//2

@@ -1,7 +1,9 @@
 import datetime
 import re
 class employee:
-    idIncrement=2
+    idIncrement=2#static variable
+
+
     def __init__(self, userName:str, Timestamp:int ,gender:str,salary:int):
         if employee.idIncrement<10:
             self.id="emp00"+str(employee.idIncrement)
@@ -14,6 +16,8 @@ class employee:
         self.gender=str(gender)
         self.salary=int(salary)
         self.userName=str(userName)
+
+
     
     def menu(self):
         if self.gender=="male" :
@@ -37,7 +41,7 @@ class employee:
 
 
     def checkSalary(self):
-        return "your salary is "+str(self.salary)+"$"
+        return "your salary = "+str(self.salary)+"$"
     
 
     def exit(self):
