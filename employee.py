@@ -1,7 +1,8 @@
 import datetime
+import re
 class employee:
     idIncrement=3
-    def __init__(self, userName:str, Timestamp:str ,gender:str,salary:int):
+    def __init__(self, userName:str, Timestamp:int ,gender:str,salary:int):
         if employee.idIncrement<10:
             self.id="emp00"+str(employee.idIncrement)
         elif employee.idIncrement>=10 and employee.idIncrement<100 :
@@ -32,14 +33,27 @@ class employee:
                 self.exit()
             else:
                 print("wrong input please re enter one of the below operation")
+
+                
     def checkSalary(self):
         return "your salary is "+str(self.salary)+"$"
+    
+
     def exit(self):
         timeStampFile=open("timeStamp.txt","a")
         timeStamp=datetime.datetime.now()
         timeStampFile.write(self.userName+"  online at " +str(timeStamp)+"\n")
         timeStampFile.close()
 
+
+    def changeSalary(self):
+        salary=input("enter the new salary")
+        pattern=("[0-9]{1,10}")
+        result=re.fullmatch(pattern,salary)
+        if result:
+            self.salary=int(salary)
+        else:
+            print("INvalid input")
 
             
         

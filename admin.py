@@ -71,13 +71,13 @@ class admin:
           
       count=0
       salary=input("enter the employee salary")
-      pattern=("[0-9],{1-6}")
-      result=re.fullmatch(Pattern,salary)
+      pattern=("[0-9]{1,6}")
+      result=re.fullmatch(pattern,salary)
       while result==None and count<3:
          count=count+1
          print("invalid input")
          salary=input("enter the employee salary")
-         result=re.fullmatch(Pattern,salary)
+         result=re.fullmatch(pattern,salary)
          if count==3:
             print("you are entering an unallowed character the process is cancelled")
             return None
@@ -87,25 +87,75 @@ class admin:
 
       date1=datetime.datetime.now()
       date1=str(date1)[0:10]
-      date1=date1.replace("-","") 
+      date1=int(date1.replace("-","") )
       #timeStamp
 
 
       self.employeeList.append(employee(username,date1,gender,salary))
       #adding employee to the list
-      
+
        
     def displayAllEmployee(self):
+      for em in range (len(self.employeeList)-1,-1,-1):
+       print ("employee Id : "+self.employeeList[em].id+"\n"+" user name : "+ self.employeeList[em].userName+"\n"+
+              " gender : "+self.employeeList[em].gender+"\n"+" salary : "+str(self.employeeList[em].salary)+"\n"+" start working in : "
+              +str(self.employeeList[em].Timestamp)+"\n")
        
-       return None
-    def changeEmployeeSalary(id):
-       return None
-    def removeEmployee():
-       return None
-    def raiseEmployeeSalary():
+       
+    
+    
+    def changeEmployeeSalary(self):
+      
+      id=input("enter the employee id : ")
+      index=self.findEmployee(id)
+      if index<=0:
+         print("no employee with this id")
+      else:
+         self.employeeList[index].changeSalary()
+
+      
+
+             
+    def removeEmployee(self):
+      
+      id=input("enter the employee id : ")
+      index=self.findEmployee(id)
+      if index<=0:
+         print("no employee with this id")
+      else:
+         self.employeeList.pop(index)
+         print("employee deleted")
+
+      
+       
+       
+    def raiseEmployeeSalary(self):
+       
        return None
     def exit():
        return None
+    def findEmployee(self,id):
+      pattern=("emp"+"[0-9]{3,1000}")
+      
+      result=re.fullmatch(pattern,id)
+      if result==None:
+         
+         return -1
+      else:
+         start=0
+         end=len(self.employeeList)-1
+         mid=(start+end)//2
+         while mid>=start and mid<=end and start<=end:
+            if self.employeeList[mid]==id:
+               return mid
+            elif int((self.addAnEmployee[mid])[3:])>int(id[3:]):
+               end=mid-1
+               mid=(start+end)//2
+            elif int((self.addAnEmployee[mid])[3:])<int(id[3:]):
+               start=mid+1
+               mid=(start+end)//2
+         return -1
+ 
     
              
             
