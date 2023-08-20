@@ -12,7 +12,7 @@ class admin:
                 +"\n"+"5. Remove Employee"+"\n"+"6. Raise Employee’s Salary"+"\n"+"7. Exit")
           choice=input("")
           if choice=="1":
-             self.displayStatistcs()
+            self.displayStatistics()
           elif choice=="2":
             self.addAnEmployee()
           elif choice=="3":
@@ -29,13 +29,16 @@ class admin:
              print("INVALID INPUT")
 
     def displayStatistics(self):
-       total=len(self.employeeList)
        numOfFemales=0
+       total=len(self.employeeList)
+       
        for employee1 in self.employeeList:
+          
           if employee1.gender=="female":
              numOfFemales=numOfFemales+1
        
-       return "from " +str(total)+" employees "+str(numOfFemales)+" is females and "+str(total-numOfFemales)+" is males"
+       print( "from " +str(total)+" employees "
+             +str(numOfFemales)+" is females and "+str(total-numOfFemales)+" is males")
       
        
     def addAnEmployee(self):
@@ -146,12 +149,12 @@ class admin:
          end=len(self.employeeList)-1
          mid=(start+end)//2
          while mid>=start and mid<=end and start<=end:
-            if self.employeeList[mid]==id:
+            if self.employeeList[mid].id==id:
                return mid
-            elif int((self.addAnEmployee[mid])[3:])>int(id[3:]):
+            elif int((self.employeeList[mid].id)[3:])>int(id[3:]):
                end=mid-1
                mid=(start+end)//2
-            elif int((self.addAnEmployee[mid])[3:])<int(id[3:]):
+            elif int((self.employeeList[mid].id)[3:])<int(id[3:]):
                start=mid+1
                mid=(start+end)//2
          return -1

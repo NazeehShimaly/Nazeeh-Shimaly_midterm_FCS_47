@@ -1,7 +1,7 @@
 import datetime
 import re
 class employee:
-    idIncrement=3
+    idIncrement=2
     def __init__(self, userName:str, Timestamp:int ,gender:str,salary:int):
         if employee.idIncrement<10:
             self.id="emp00"+str(employee.idIncrement)
@@ -34,7 +34,7 @@ class employee:
             else:
                 print("wrong input please re enter one of the below operation")
 
-                
+
     def checkSalary(self):
         return "your salary is "+str(self.salary)+"$"
     
