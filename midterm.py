@@ -17,10 +17,20 @@ def fileIntoListOfEmp():
     list1.pop(0)
     return list1
 
+def empfound(emp,list1:list[employee],passw):
+    if passw !="":
+        return -1
+    else:
+        for employee1 in range (0,len(list1)):
+            if list1[employee1].userName==emp:
+                return employee1
+    return -1
+
 employeelist= fileIntoListOfEmp()  
 
 print("Welcome to comapny program"+"\n") 
 attemp=0
+
 while attemp<5:
     userName=input("enter your userName : ")
     passw=input("enter your password : ")
@@ -28,18 +38,22 @@ while attemp<5:
         Admin=admin(employeelist)    
         Admin.menu()
         attemp=0
-    elif passw=="":
-        attemp+=1
-        for employee in employeelist:
-            if employee.userName==userName:
-                entered=1
-                attemp=0
-                employee.menu()
-                break
-            
+    else:
+        index=empfound(userName,employeelist,passw)
+        if index==-1:
+            attemp+=1
+            print("No Matches")
+        else:
+            employeelist[index].menu()
+            attemp=0
+        
+
+    
+    
+
     
 print("Your blocked")
         
 
-
-    
+                
+                

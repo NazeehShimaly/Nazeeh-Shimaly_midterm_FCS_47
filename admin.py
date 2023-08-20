@@ -3,6 +3,7 @@ import datetime
 import re
 class admin:
     def __init__(self,list1:list[employee]):
+      self.merge(list1)
       self.employeeList=list1
     def menu(self):
        choice=0
@@ -178,6 +179,31 @@ class admin:
                mid=(start+end)//2
          
          return -1
+    def merge(self,list1:list[employee]):
+       if len(list1)>1: 
+         mid=(len(list1))//2
+         left=list1[:mid]
+         right=list1[mid+1:]
+         self.merge(left)
+         self.merge(right)
+         i=j=k=0
+         while i<len(left) and j<len(right):
+            if int(left[i].id[3:]) <= int(right[j].id[3:]):
+               list1[k]==left[i]
+               i+=1
+            else:
+               list1[k]=right[j]
+               j+=1
+            k+=1
+         while i<len(left):
+            list1[k]=left[i]
+            i+=1
+         while j<len(right):
+            list1[k]=right[j]
+            j+=1
+            
+       
+
  
     
              

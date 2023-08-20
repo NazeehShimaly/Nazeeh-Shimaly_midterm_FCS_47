@@ -1,3 +1,2 @@
-emp002,asda,20230820,male,1200
-emp003,ALi,20230820,male,1200
-emp004,qwe,20230820,female,3333
+emp002,cdaoud,20220802,male,13500
+emp003,manuella,20220803,female,1200
